@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 960" font-family="'Segoe UI',Helvetica,Arial,sans-serif" font-size="16" fill="#1e1e1e">
+  <rect width="1500" height="960" fill="#ffffff"/>
+  <g stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- Screen 1 -->
+    <rect x="40" y="70" width="820" height="400" rx="10"/>
+    <line x1="40" y1="130" x2="860" y2="130"/>
+    <rect x="510" y="85" width="170" height="32" rx="6"/>
+    <rect x="695" y="85" width="150" height="32" rx="6" fill="#e7f0ff"/>
+    <rect x="60" y="150" width="780" height="36" rx="4" fill="#f3f3f3"/>
+    <rect x="60" y="192" width="780" height="50" rx="4"/>
+    <rect x="60" y="248" width="780" height="50" rx="4"/>
+    <rect x="60" y="304" width="780" height="50" rx="4"/>
+    <rect x="60" y="360" width="780" height="50" rx="4"/>
+    <rect x="60" y="425" width="200" height="32" rx="6"/>
+    <rect x="275" y="425" width="160" height="32" rx="6"/>
+    <rect x="450" y="425" width="130" height="32" rx="6"/>
+    <!-- Screen 2 -->
+    <rect x="920" y="70" width="540" height="560" rx="10"/>
+    <line x1="920" y1="125" x2="1460" y2="125"/>
+    <rect x="1110" y="145" width="330" height="32" rx="4"/>
+    <rect x="1110" y="190" width="330" height="56" rx="4"/>
+    <rect x="1110" y="259" width="330" height="32" rx="4"/>
+    <rect x="1030" y="320" width="110" height="32" rx="4"/>
+    <rect x="1330" y="320" width="110" height="32" rx="4"/>
+    <rect x="1050" y="365" width="90" height="32" rx="4"/>
+    <rect x="1330" y="365" width="110" height="32" rx="4"/>
+    <rect x="1110" y="420" width="330" height="70" rx="4"/>
+    <rect x="1110" y="505" width="330" height="32" rx="4"/>
+    <rect x="1215" y="575" width="100" height="36" rx="6"/>
+    <rect x="1335" y="575" width="105" height="36" rx="6" fill="#e7f0ff"/>
+    <!-- Screen 3 -->
+    <rect x="40" y="540" width="820" height="390" rx="10"/>
+    <line x1="110" y1="890" x2="110" y2="600"/>
+    <line x1="110" y1="890" x2="820" y2="890"/>
+    <polyline points="102,612 110,598 118,612"/>
+    <polyline points="806,882 822,890 806,898"/>
+    <line x1="465" y1="600" x2="465" y2="890" stroke-dasharray="8 6"/>
+    <line x1="110" y1="745" x2="820" y2="745" stroke-dasharray="8 6"/>
+    <!-- flow arrows -->
+    <path d="M845 101 C 890 101, 890 101, 915 101"/>
+    <polyline points="905,94 917,101 905,108"/>
+    <path d="M 450 470 L 450 535"/>
+    <polyline points="443,523 450,537 457,523"/>
+  </g>
+  <g fill="#1e1e1e">
+    <circle cx="200" cy="650" r="8"/><circle cx="280" cy="690" r="8"/><circle cx="380" cy="640" r="8"/>
+    <circle cx="600" cy="660" r="8"/><circle cx="700" cy="700" r="8"/>
+    <circle cx="190" cy="810" r="8"/><circle cx="330" cy="840" r="8"/>
+    <circle cx="610" cy="800" r="8"/><circle cx="740" cy="850" r="8"/>
+  </g>
+  <text x="1425" y="105" font-size="20">✕</text>
+  <!-- Titles -->
+  <g font-size="22" font-weight="bold">
+    <text x="40" y="50">Screen 1: Ranked backlog</text>
+    <text x="920" y="50">Screen 2: Add / edit feature</text>
+    <text x="40" y="525">Screen 3: Value vs. Effort chart</text>
+  </g>
+  <!-- Screen 1 text -->
+  <text x="60" y="108" font-size="22" font-weight="bold">PriorityPilot</text>
+  <text x="524" y="107" font-size="14">RICE · ICE · MoSCoW</text>
+  <text x="722" y="107">+ Add feature</text>
+  <text x="72" y="174" font-weight="bold">Rank</text><text x="135" y="174" font-weight="bold">Feature / problem</text><text x="385" y="174" font-weight="bold">Requested by</text><text x="520" y="174" font-weight="bold">Score</text><text x="630" y="174" font-weight="bold">Status</text><text x="745" y="174" font-weight="bold">Why?</text><text x="72" y="222">1 ▲▼</text><text x="135" y="222">Bulk CSV import</text><text x="385" y="222">Customer</text><text x="520" y="222">2,880</text><text x="630" y="222">Prioritize</text><text x="745" y="222">note</text><text x="72" y="278">2 ▲▼</text><text x="135" y="278">Slack notifications</text><text x="385" y="278">Sales</text><text x="520" y="278">1,600</text><text x="630" y="278">Test</text><text x="745" y="278">note</text><text x="72" y="334">3 ▲▼</text><text x="135" y="334">SSO for enterprise</text><text x="385" y="334">Leadership</text><text x="520" y="334">1,200</text><text x="630" y="334">Defer</text><text x="745" y="334">note</text><text x="72" y="390">4 ▲▼</text><text x="135" y="390">Dark mode  [Overridden]</text><text x="385" y="390">Engineering</text><text x="520" y="390">400</text><text x="630" y="390">Prioritize</text><text x="745" y="390">note</text>
+  <text x="75" y="447">Compare 2 features</text>
+  <text x="290" y="447">Share summary</text>
+  <text x="465" y="447">Export CSV</text>
+  <!-- Screen 2 text -->
+  <text x="940" y="105" font-size="20" font-weight="bold">Add feature</text>
+  <text x="940" y="167">Feature name</text>
+  <text x="940" y="212" fill="#1a5fd0">Problem it solves</text>
+  <text x="940" y="281" fill="#1a5fd0">Requested by</text>
+  <text x="1125" y="281">Sales ▾</text>
+  <text x="940" y="342">Reach ⓘ</text>
+  <text x="1170" y="342">Impact ⓘ</text>
+  <text x="1345" y="342">1 ▾</text>
+  <text x="940" y="387">Confid. ⓘ</text>
+  <text x="1062" y="387">80% ▾</text>
+  <text x="1170" y="387">Effort ⓘ</text>
+  <text x="940" y="445" fill="#1a5fd0">Why this score?</text>
+  <text x="940" y="527" fill="#1a5fd0">Status</text>
+  <text x="1125" y="527">Prioritize ▾</text>
+  <text x="1238" y="599">Cancel</text>
+  <text x="1362" y="599">Save</text>
+  <text x="940" y="660" font-size="14" fill="#555">Fields in blue ink came from user research:</text>
+  <text x="940" y="680" font-size="14" fill="#1a5fd0">problem, requested by, why this score, status</text>
+  <!-- Screen 3 text -->
+  <text x="160" y="625" fill="#1a7f37" font-weight="bold">Quick Wins</text>
+  <text x="640" y="625" font-weight="bold">Big Bets</text>
+  <text x="160" y="880" font-weight="bold">Fill-ins</text>
+  <text x="640" y="880" fill="#c4302b" font-weight="bold">Money Pits</text>
+  <text x="50" y="600">Value</text>
+  <text x="760" y="918">Effort</text>
+  <!-- flow labels -->
+  <text x="820" y="490" font-size="14" fill="#555">Add → form</text>
+  <text x="460" y="510" font-size="14" fill="#555">same data, plotted</text>
+</svg>

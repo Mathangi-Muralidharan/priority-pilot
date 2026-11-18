@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PriorityPilot · Feature prioritization for PMs</title>
+  <meta name="description" content="Rank your backlog with RICE, ICE or MoSCoW, and make the assumptions behind every score visible.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f3d36'/%3E%3Cpath d='M9 22 L16 8 L23 22 L16 18 Z' fill='%23f2c14e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M9 22 L16 8 L23 22 L16 18 Z"/></svg>
+      <div>
+        <h1>PriorityPilot</h1>
+        <p class="tagline">Scoring is easy. Alignment is hard. Show your reasoning.</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="segmented" role="tablist" aria-label="Scoring framework">
+        <button role="tab" data-fw="RICE">RICE</button>
+        <button role="tab" data-fw="ICE">ICE</button>
+        <button role="tab" data-fw="MOSCOW">MoSCoW</button>
+      </div>
+      <button class="btn primary" id="addBtn">+ Add feature</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary-strip" id="summaryStrip" aria-label="Backlog at a glance"></section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Ranked backlog</h2>
+          <p class="hint" id="formulaHint"></p>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" id="compareBtn">Compare two</button>
+          <button class="btn" id="shareBtn">Share summary</button>
+          <button class="btn ghost" id="resetOrderBtn" hidden>Reset to score order</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="backlog" id="backlog">
+          <thead id="backlogHead"></thead>
+          <tbody id="backlogBody"></tbody>
+        </table>
+      </div>
+      <p class="empty" id="emptyState" hidden>Your backlog is empty. Add a feature, import a CSV, or load the sample data.</p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Value vs. Effort</h2>
+          <p class="hint">Value = Reach × Impact × Confidence. Lines split each axis at the median, so every backlog has its own quick wins.</p>
+        </div>
+      </div>
+      <div id="chart" class="chart"></div>
+    </section>
+
+    <section class="panel data-panel">
+      <div>
+        <h2>Your data</h2>
+        <p class="hint">Saved in this browser only. Nothing is sent anywhere.</p>
+      </div>
+      <div class="panel-actions">
+        <button class="btn" id="exportBtn">Export CSV</button>
+        <label class="btn" for="importInput">Import CSV</label>
+        <input type="file" id="importInput" accept=".csv,text/csv" hidden>
+        <button class="btn ghost" id="sampleBtn">Load sample data</button>
+        <button class="btn ghost danger" id="clearBtn">Clear all</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Built by Mathangi Muralidharan as a product management portfolio project ·
+    <a href="https://github.com/Mathangi-Muralidharan/priority-pilot">Case study &amp; source on GitHub</a>
+  </footer>
+
+  <!-- Add / edit feature -->
+  <dialog id="featureDialog" class="sheet">
+    <form id="featureForm" method="dialog">
+      <div class="sheet-head">
+        <h3 id="featureDialogTitle">Add feature</h3>
+        <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+      </div>
+      <div class="sheet-body">
+        <label class="field">
+          <span>Feature name</span>
+          <input name="title" required maxlength="80" placeholder="e.g. Bulk CSV import">
+        </label>
+        <label class="field">
+          <span>Problem it solves <em class="research">from research</em></span>
+          <textarea name="problem" rows="2" placeholder="Which customer problem does this address?"></textarea>
+        </label>
+        <div class="grid-2">
+          <label class="field">
+            <span>Requested by <em class="research">from research</em></span>
+            <select name="requestedBy">
+              <option>Customer</option><option>Sales</option><option>Leadership</option>
+              <option>Data</option><option>Engineering</option><option>Design</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Decision status <em class="research">from research</em></span>
+            <select name="status">
+              <option>Prioritize</option><option>Test</option><option>Defer</option><option>Rejected</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset class="score-set" data-fw="RICE">
+          <legend>RICE inputs</legend>
+          <div class="grid-2">
+            <label class="field">
+              <span>Reach</span>
+              <input name="reach" type="number" min="0" step="1" value="500">
+              <small>Users or customers affected per quarter.</small>
+            </label>
+            <label class="field">
+              <span>Impact</span>
+              <select name="impact">
+                <option value="3">3 · Massive</option><option value="2">2 · High</option>
+                <option value="1" selected>1 · Medium</option><option value="0.5">0.5 · Low</option>
+                <option value="0.25">0.25 · Minimal</option>
+              </select>
+              <small>How much it moves the goal for each person reached.</small>
+            </label>
+            <label class="field">
+              <span>Confidence</span>
+              <select name="confidence">
+                <option value="1">100% · Strong data</option>
+                <option value="0.8" selected>80% · Some data</option>
+                <option value="0.5">50% · Mostly a hunch</option>
+              </select>
+              <small>How sure you are about reach and impact.</small>
+            </label>
+            <label class="field">
+              <span>Effort</span>
+              <input name="effort" type="number" min="0.1" step="0.1" value="1">
+              <small>Person-months across design, engineering and QA.</small>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="score-set" data-fw="ICE">
+          <legend>ICE inputs (1–10)</legend>
+          <div class="grid-3">
+            <label class="field"><span>Impact</span><input name="iceImpact" type="number" min="1" max="10" value="5"><small>Effect on the goal.</small></label>
+            <label class="field"><span>Confidence</span><input name="iceConfidence" type="number" min="1" max="10" value="5"><small>Strength of evidence.</small></label>
+            <label class="field"><span>Ease</span><input name="iceEase" type="number" min="1" max="10" value="5"><small>10 = trivial to build.</small></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="score-set" data-fw="MOSCOW">
+          <legend>MoSCoW category</legend>
+          <label class="field">
+            <select name="moscow">
+              <option value="Must">Must have</option><option value="Should" selected>Should have</option>
+              <option value="Could">Could have</option><option value="Wont">Won't have (this time)</option>
+            </select>
+            <small>Items are ranked by category, then by RICE score within each category.</small>
+          </label>
+        </fieldset>
+
+        <label class="field">
+          <span>Why this score? <em class="research">from research</em></span>
+          <textarea name="notes" rows="2" placeholder="e.g. Reach = 1,200 accounts on the Pro plan; effort from eng estimate"></textarea>
+          <small>Write down your assumptions so stakeholders can see and challenge them.</small>
+        </label>
+      </div>
+      <div class="sheet-foot">
+        <button type="button" class="btn ghost danger" id="deleteBtn" hidden>Delete</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn" data-close>Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Compare -->
+  <dialog id="compareDialog" class="sheet wide">
+    <div class="sheet-head">
+      <h3>Compare two features</h3>
+      <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-body">
+      <p class="hint">For close calls: see exactly where each option wins, instead of arguing about one number.</p>
+      <div class="grid-2">
+        <label class="field"><span>Option A</span><select id="cmpA"></select></label>
+        <label class="field"><span>Option B</span><select id="cmpB"></select></label>
+      </div>
+      <div id="compareTable"></div>
+    </div>
+  </dialog>
+
+  <!-- Share -->
+  <dialog id="shareDialog" class="sheet wide">
+    <div class="sheet-head">
+      <h3>Share summary</h3>
+      <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-body">
+      <p class="hint">Plain-English rationale you can paste into Slack, email or a planning doc.</p>
+      <textarea id="shareText" rows="16" readonly></textarea>
+    </div>
+    <div class="sheet-foot">
+      <span class="spacer"></span>
+      <button type="button" class="btn primary" id="copyShareBtn">Copy to clipboard</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
