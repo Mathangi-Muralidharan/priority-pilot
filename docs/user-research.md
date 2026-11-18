@@ -44,6 +44,23 @@ _To be added._
 
 ---
 
+## Hypotheses to validate (not interview data)
+
+Before the next round of interviews, I wrote down what I *expect* PMs in different settings to say. These are assumptions, not findings, and nothing in the product is built on them yet. Each one gets confirmed or rejected by real interviews (see [interview-guide.md](interview-guide.md)).
+
+| # | Segment | Hypothesis | If true, the product could… | Status |
+|---|---|---|---|---|
+| H1 | Large tech company PM | Stakeholder alignment is the hardest part, and priorities live across several tools (tracker, roadmap tool, spreadsheets), so communicating changes is manual. | Show what changed since priorities were last shared | To test |
+| H2 | B2B SaaS PM | The hard part is telling one large customer's demand apart from a need shared by many accounts. | Track how many customers asked for each item, next to who asked | To test |
+| H3 | Early-stage startup PM | With little data and few engineers, PMs prioritize by gut and founder opinion, and need a simple way to commit only what the team can build. | Add a team capacity line that shows what fits this cycle | To test |
+| H4 | Technical / AI product PM | Technical uncertainty (feasibility, accuracy, cost) is as important as customer value, and evidence lives in separate experiment docs. | Link each item to its evidence, and add a technical-risk factor | To test |
+
+**Already supported by interview 1:** H1's alignment pain ("Getting alignment is probably the hardest part"). Still untested: the multi-tool part of H1, and H2–H4.
+
+**Rule I'm holding myself to:** a hypothesis becomes a feature only after at least 2 real PMs in that segment describe the problem without being prompted.
+
+---
+
 ## Summary of insights (so far: 1 interview)
 
 | Theme | Mentioned by | Example quote |

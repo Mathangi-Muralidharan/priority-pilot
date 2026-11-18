@@ -61,7 +61,7 @@ PMs at growing SaaS companies who own a backlog of 20+ items, take requests from
 
 ## Process
 
-1. **Discovery:** async interviews with PMs ([research notes](docs/user-research.md)). Interview 1 shifted the problem from *scoring* to *alignment*.
+1. **Discovery:** async interviews with PMs ([research notes](docs/user-research.md)). Interview 1 shifted the problem from *scoring* to *alignment*. Next, I wrote [hypotheses for four PM segments](docs/user-research.md#hypotheses-to-validate-not-interview-data) and an [interview guide](docs/interview-guide.md) to test them before building anything new.
 2. **Definition:** one-page [PRD](docs/PRD.md) with goals, success metrics, scope, and out-of-scope items with reasons.
 3. **Design:** low-fidelity [wireframes](docs/wireframes.png); fields added because of research are marked in blue.
 4. **Build:** vibe coded with AI assistance as a static web app (HTML, CSS, JavaScript; no framework, no build step).
